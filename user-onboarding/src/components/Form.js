@@ -6,7 +6,8 @@ const Form = props => {
         onInputChange,
         onSubmit,
         disabled,
-        onCheckboxChange
+        onCheckboxChange,
+        errors
     } = props
 
     console.log(values)
@@ -15,6 +16,7 @@ const Form = props => {
             <p>The form is connected!</p>
             
             <div className='Form-Container'>
+
                 <label>Name:&nbsp;
                     <input
                     type='text'
@@ -61,6 +63,12 @@ const Form = props => {
                 className='Submit'
                 disabled={disabled}
                 >Apply</button>
+            </div>
+            <div>
+                <span>{errors.username}</span>
+                <span>{errors.email}</span>
+                <span>{errors.password}</span>
+                <span>{errors.terms}</span>
             </div>
         </form>
         

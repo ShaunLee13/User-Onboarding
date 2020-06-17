@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Form from './components/Form';
 import * as Yup from 'yup'
+import formSchema from './validation/FormSchema'
 
 const initialDisabled = true
 const initialFormValues = {
@@ -10,20 +11,43 @@ const initialFormValues = {
   password: '',
   terms: false
 }
+const initialErrors = {
+  username: '',
+  email: '',
+  role: '',
+  civil: '',
+}
 
 
 function App() {
   const [ disable, setDisable ] = useState(initialDisabled)
   const [ formValues, setFormValues ] = useState(initialFormValues)
   const [ member, setMember ] = useState([])
+  const [ errors, setErrors ] = useState(initialErrors)
 
 
 
   const onInputChange = evt => {
     const { name, value } = evt.target
 
+    Yup
+    .reach(formSchema, name)
+    .validate(value)
+    .then(valid => {
+      setErrors({
+        ...errors,
+        [name]: ""
+      });
+    })
+    .catch(err => {
+      setErrors({
+        ...errors,
+        [name]: err.errors[0]
+      });
+    });
     setFormValues({
-      ...formValues, [name]:value
+      ...formValues,
+      [name]: value
     })
   }
 
@@ -47,6 +71,13 @@ function App() {
   }
 
 
+  useEffect(() => {
+    formSchema.isValid(formValues).then(valid => {
+      setDisable(!valid);
+    })
+  }, [formValues])
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -56,6 +87,7 @@ function App() {
         onInputChange={onInputChange}
         onCheckboxChange={onCheckboxChange}
         onSubmit={onSubmit}
+        errors='errors'
         />
       </header>
     </div>
