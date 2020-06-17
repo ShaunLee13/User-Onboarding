@@ -3,6 +3,7 @@ import './App.css';
 import Form from './components/Form';
 import * as Yup from 'yup'
 import formSchema from './validation/FormSchema'
+import axios from 'axios'
 
 const initialDisabled = true
 const initialFormValues = {
@@ -26,6 +27,21 @@ function App() {
   const [ errors, setErrors ] = useState(initialErrors)
 
 
+
+  const postMember = newMember => {
+
+    axios.post(`https://reqres.in/api/users`, newMember)
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+        debugger
+      })
+      .finally(() => {
+        setFormValues(initialFormValues)
+      })
+  }
 
   const onInputChange = evt => {
     const { name, value } = evt.target
@@ -68,6 +84,8 @@ function App() {
       password: formValues.password.trim(),
       terms: formValues.terms
     }
+
+    postMember(newMember)
   }
 
 

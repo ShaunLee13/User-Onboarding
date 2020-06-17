@@ -10,7 +10,6 @@ const Form = props => {
         errors
     } = props
 
-    console.log(values)
     return (
         <div className='Container'>
             <form onSubmit={onSubmit}>
