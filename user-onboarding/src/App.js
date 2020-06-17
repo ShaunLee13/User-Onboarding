@@ -87,7 +87,7 @@ function App() {
         onInputChange={onInputChange}
         onCheckboxChange={onCheckboxChange}
         onSubmit={onSubmit}
-        errors='errors'
+        errors={errors}
         />
       </header>
     </div>

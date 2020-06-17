@@ -13,7 +13,7 @@ const formSchema = Yup.object().shape({
       .string()
       .min(8, "Passwords must contain at least 8 characters."),
     terms: Yup
-      .boolean()
+      .mixed()
       .oneOf([true], "Please accept The Terms of Service."),
   })
   
