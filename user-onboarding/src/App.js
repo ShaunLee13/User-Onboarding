@@ -23,7 +23,7 @@ const initialErrors = {
 function App() {
   const [ disable, setDisable ] = useState(initialDisabled)
   const [ formValues, setFormValues ] = useState(initialFormValues)
-  const [ member, setMember ] = useState([])
+  const [ users, setUsers ] = useState([])
   const [ errors, setErrors ] = useState(initialErrors)
 
 
@@ -33,6 +33,7 @@ function App() {
     axios.post(`https://reqres.in/api/users`, newMember)
       .then(res => {
         console.log(res)
+        setUsers([...users, res.data])
       })
       .catch(err => {
         console.log(err)
@@ -107,6 +108,9 @@ function App() {
         onSubmit={onSubmit}
         errors={errors}
         />
+        <pre>
+          {JSON.stringify(users)}
+        </pre>
       </header>
     </div>
   );
