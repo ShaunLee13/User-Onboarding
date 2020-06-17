@@ -36,3 +36,25 @@
     transform: rotate(360deg);
   }
 }
+
+.Form-Container{
+  display: flex;
+  flex-direction: column;
+}
+
+.Form-Container label{
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.ToS{
+  font-size: .8rem;
+}
+
+.Submit{
+  background-color: cadetblue;
+  padding: 5px 10px;
+  font-size: 1rem;
+  border-radius: 8px;
+}

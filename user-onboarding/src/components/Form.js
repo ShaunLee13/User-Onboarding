@@ -1,28 +1,39 @@
 import React from 'react'
 
-const Form = () => {
+const Form = props => {
+    const {
+        disabled
+    } = props
 
     return (
         <div>
             <p>The form is connected!</p>
+            
+            <div className='Form-Container'>
+                <label>Name:&nbsp;
+                    <input />
+                </label>
 
-            <label>Name:&nbsp;
+                <label>Email:&nbsp;
+                    <input />
+                </label>
 
-            </label>
+                <label>Password:&nbsp;
+                    <input />
+                </label>
 
-            <label>Email:&nbsp;
-
-            </label>
-
-            <label>Password:&nbsp;
-
-            </label>
-
-            <label>Terms of Service:&nbsp;
-
-            </label>
-
-            <div className='SubmitButton'></div>
+                <label className='ToS'>
+                    <input type='checkbox' />
+                    I have read and agree to the Terms of Service&nbsp;
+                </label>
+            </div>
+            <div className='SubmitButton'>
+                <p>Submit application:</p>
+                <button 
+                className='Submit'
+                disabled={disabled}
+                >Apply</button>
+            </div>
         </div>
         
     )
